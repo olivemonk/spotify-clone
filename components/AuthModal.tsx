@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "./Modal";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import {
@@ -15,6 +15,13 @@ const AuthModal = () => {
   const router = useRouter();
   const { session } = useSessionContext();
   const { onClose, isOpen } = useAuthModal();
+
+  useEffect(() => {
+    if (session) {
+      router.refresh();
+      onClose();
+    }
+  }, [session, router, onClose]);
 
   const onChange = (open: Boolean) => {
     if (!open) {
