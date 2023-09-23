@@ -9,6 +9,8 @@ interface SeachProps {
   };
 }
 
+export const revalidate = 0;
+
 const Search = async ({ searchParams }: SeachProps) => {
   const songs = await getSongsByTitle(searchParams.title);
 
